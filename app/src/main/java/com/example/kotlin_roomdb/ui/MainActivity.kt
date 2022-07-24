@@ -1,26 +1,19 @@
 package com.example.kotlin_roomdb.ui
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_roomdb.repository.UserRepository
 import com.example.kotlin_roomdb.database.User
 import com.example.kotlin_roomdb.databinding.ActivityMainBinding
-
-import com.example.kotlin_roomdb.viewmodel.Roomviewmodel
+import com.example.kotlin_roomdb.viewmodel.RoomViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
-
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var roomDataAdapter: RoomDataAdapter
     lateinit var binding: ActivityMainBinding
-    lateinit var roomviewmodel: Roomviewmodel
+    lateinit var roomviewmodel: RoomViewModel
 
     @OptIn(DelicateCoroutinesApi::class)
     override  fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initview()
 
-        binding.addUserDia.addUserBtn.setOnClickListener({
+        binding.addUserDia.addUserBtn.setOnClickListener {
 
             addUserOnclick()
 
-        })
+        }
     }
-
     fun initview()
     {
-        roomviewmodel = Roomviewmodel(UserRepository(this))
+        roomviewmodel = RoomViewModel(UserRepository(this))
         roomDataAdapter = RoomDataAdapter(applicationContext , supportFragmentManager)
         binding.recycler.apply {
 
@@ -47,36 +39,36 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(applicationContext)
 
         }
-        roomviewmodel.userList.observe(this , {
+        roomviewmodel.userList.observe(this) {
             roomDataAdapter.submitList(it)
-        })
+        }
     }
 
      @OptIn(DelicateCoroutinesApi::class)
       fun addUserOnclick()
     {
-        if(binding.addUserDia.editFname.text.toString().length ==0)
+        if(binding.addUserDia.editFname.text.toString().isEmpty())
         {
-            binding.addUserDia.editFname.setError("Please fill it")
+            binding.addUserDia.editFname.error = "Please fill it"
             return
         }
-        else if(binding.addUserDia.editLname.text.toString().length==0)
+        else if(binding.addUserDia.editLname.text.toString().isEmpty())
         {
-            binding.addUserDia.editLname.setError("Please fill it")
+            binding.addUserDia.editLname.error = "Please fill it"
             return
         }
-        else if(binding.addUserDia.editAge.text.toString().length==0)
+        else if(binding.addUserDia.editAge.text.toString().isEmpty())
         {
-            binding.addUserDia.editAge.setError("Please fill it")
+            binding.addUserDia.editAge.error = "Please fill it"
             return
         }
         else {
-            val fname = binding.addUserDia.editFname.text.toString()
-            val lname = binding.addUserDia.editLname.text.toString()
+            val fName = binding.addUserDia.editFname.text.toString()
+            val lName = binding.addUserDia.editLname.text.toString()
             val age =  binding.addUserDia.editAge.text.toString()
 
                 roomviewmodel.insertUser(
-                    User(0, fname , lname , age )
+                    User(0, fName , lName , age )
                 )
 
             Toast.makeText(

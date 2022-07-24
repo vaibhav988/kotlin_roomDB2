@@ -8,25 +8,23 @@ import com.example.kotlin_roomdb.database.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class Roomviewmodel( val userRepository: UserRepository) : ViewModel() {
+class RoomViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    var userList  : LiveData<List<User>> = userRepository.allUsers
+    var userList: LiveData<List<User>> = userRepository.allUsers
 
-    fun insertUser(user : User)
-    {
+    fun insertUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.insertUser(user)
         }
     }
 
-     fun deleteUser(user : User) {
-        viewModelScope.launch(Dispatchers.IO){
+    fun deleteUser(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.deleteUser(user)
         }
     }
 
-     fun updateUser(user: User)
-    {
+    fun updateUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.updateUser(user)
         }

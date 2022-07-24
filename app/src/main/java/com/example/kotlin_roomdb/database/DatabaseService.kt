@@ -4,14 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-object DatabaseService{
+object DatabaseService {
 
     @Volatile
-    private var DatabaseInstance : UserDatabase? = null
+    private var DatabaseInstance: UserDatabase? = null
 
-    fun getDatabaseInstance(context: Context ):UserDatabase
-    {
-        if(DatabaseInstance==null) {
+    fun getDatabaseInstance(context: Context): UserDatabase {
+        if(DatabaseInstance == null) {
             synchronized(this)
             {
                 DatabaseInstance = Room.databaseBuilder(
@@ -23,5 +22,5 @@ object DatabaseService{
         return DatabaseInstance!!
     }
 
-
+//Dagger
 }

@@ -7,15 +7,17 @@ import androidx.room.*
 interface UserDao {
 
     @Insert
-     fun addUser(user : User)
+    fun addUser(user: User)
 
     @Update
-       fun updateUser(user : User)
+    fun updateUser(user: User)
 
     @Delete
-     fun deleteUser(user : User)
+    fun deleteUser(user: User)
 
-    @Query("select * from userTable")
-      fun getUsers() : LiveData<List<User>>
+    @Query("SELECT * FROM userTable") //CapsLock
+    fun getUsers(): LiveData<List<User>>
 
 }
+
+//clean code

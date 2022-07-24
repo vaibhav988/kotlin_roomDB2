@@ -6,27 +6,21 @@ import com.example.kotlin_roomdb.database.User
 import com.example.kotlin_roomdb.database.DatabaseService
 import com.example.kotlin_roomdb.database.UserDao
 
-class UserRepository(val context: Context) {
-     var allUsers : LiveData<List<User>>
-     var userDao : UserDao
+class UserRepository(context: Context) {
 
-    init {
-        allUsers = DatabaseService.getDatabaseInstance(context).userDao().getUsers()
-        userDao = DatabaseService.getDatabaseInstance(context).userDao()
-    }
+    val allUsers = DatabaseService.getDatabaseInstance(context).userDao().getUsers()
+    private val userDao = DatabaseService.getDatabaseInstance(context).userDao()
 
-      fun insertUser(user : User)
-    {
+
+    fun insertUser(user: User) {
         userDao.addUser(user)
     }
 
-    fun deleteUser(user : User)
-    {
+    fun deleteUser(user: User) {
         userDao.deleteUser(user)
     }
 
-     fun updateUser(user: User)
-    {
+    fun updateUser(user: User) {
         userDao.updateUser(user)
     }
 
