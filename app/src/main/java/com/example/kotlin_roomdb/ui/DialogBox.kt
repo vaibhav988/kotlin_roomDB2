@@ -28,7 +28,8 @@ class DialogBox(context: Context, val user: User) : DialogFragment() {
     }
 
     fun setPrperties() {
-        binding.dialogAge.setText(user.age)
+
+        binding.diaAge.setText(user.age)
         binding.diaFname.setText(user.firstName)
         binding.diaLname.setText(user.lastName)
 
@@ -37,9 +38,8 @@ class DialogBox(context: Context, val user: User) : DialogFragment() {
 
             roomviewmodel.updateUser(
                 User(
-                    user
-                        .Id, binding.diaFname.text.toString(), binding.diaLname.text.toString(),
-                    binding.dialogAge.text.toString()
+                    user.Id, binding.diaFname.text.toString(), binding.diaLname.text.toString(),
+                    binding.diaAge.text.toString()
                 )
             )
             dismiss()

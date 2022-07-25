@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class RoomViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    var userList: LiveData<List<User>> = userRepository.allUsers
+    var userList =  userRepository.allUsers
 
     fun insertUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -15,7 +15,7 @@ interface UserDao {
     @Delete
     fun deleteUser(user: User)
 
-    @Query("SELECT * FROM userTable") //CapsLock
+    @Query("SELECT * FROM userTable")
     fun getUsers(): LiveData<List<User>>
 
 }

@@ -11,7 +11,6 @@ class UserRepository(context: Context) {
     val allUsers = DatabaseService.getDatabaseInstance(context).userDao().getUsers()
     private val userDao = DatabaseService.getDatabaseInstance(context).userDao()
 
-
     fun insertUser(user: User) {
         userDao.addUser(user)
     }

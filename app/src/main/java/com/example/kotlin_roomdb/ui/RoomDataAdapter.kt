@@ -16,35 +16,37 @@ import com.example.kotlin_roomdb.viewmodel.RoomViewModel
 
 class RoomDataAdapter(
     private val context: Context,
-    private val supportFragmentManager: FragmentManager
+    private val supportFragmentManager: FragmentManager,
+    private val roomViewModel: RoomViewModel
 ) : ListAdapter<User, RoomDataAdapter.ViewHolder>(Diffutil()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding , context , roomViewModel , supportFragmentManager)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-        val roomviewmodel = RoomViewModel(UserRepository(context))
-        val user: User = getItem(position)
-        holder.binding.deleteUser.setOnClickListener {
-            roomviewmodel.deleteUser(user)
-        }
-        holder.binding.editUser.setOnClickListener {
-            val dialogBox = DialogBox(context, user)
-            dialogBox.show(supportFragmentManager, "t")
-        }
+
+
     }
 
-    class ViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: UserItemBinding ,val context: Context, val roomViewModel: RoomViewModel ,val supportFragmentManager: FragmentManager) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(user: User) {
             binding.firstnameText.text = "Fname: " + user.firstName
             binding.lastnameText.text = "Lname: " + user.lastName
             binding.ageText.text = "Age: " + user.age
             binding.idText.text = "Id: " + user.Id.toString()
+
+            binding.deleteUser.setOnClickListener {
+                roomViewModel.deleteUser(user)
+            }
+            binding.editUser.setOnClickListener {
+                val dialogBox = DialogBox(context, user)
+                dialogBox.show(supportFragmentManager, "t")
+            }
         }
     }
 }
@@ -55,7 +57,7 @@ class Diffutil : DiffUtil.ItemCallback<User>() {
     }
 
     override fun areContentsTheSame(oldItemPosition: User, newItemPosition: User): Boolean {
-        return oldItemPosition.Id == newItemPosition.Id
+        return oldItemPosition == newItemPosition
     }
 
 }
