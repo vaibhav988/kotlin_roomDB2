@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.kotlin_roomdb.databinding.SuccessfulBinding
 
-class UserAddedDialog() : DialogFragment(){
+class UserAddedDialogBox() : DialogFragment() {
 
 
     override fun onCreateView(
@@ -19,6 +19,7 @@ class UserAddedDialog() : DialogFragment(){
     ): View? {
 
         val binding: SuccessfulBinding = SuccessfulBinding.inflate(LayoutInflater.from(context))
+
         return binding.root.rootView
     }
 }

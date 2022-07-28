@@ -4,34 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.MainActivity"
-    >
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
 
     <include
         android:id="@+id/add_user_dia"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
         layout="@layout/add_user"
-        />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <soup.neumorphism.NeumorphTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Users List"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
-        />
+        android:text="Users List"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recycler"
-        android:background="@color/white"
-        />
+
+        android:background="@color/white" />
 
 </LinearLayout>

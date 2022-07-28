@@ -10,12 +10,12 @@ object DatabaseService {
     private var DatabaseInstance: UserDatabase? = null
 
     fun getDatabaseInstance(context: Context): UserDatabase {
-        if(DatabaseInstance == null) {
+        if (DatabaseInstance == null) {
             synchronized(this)
             {
                 DatabaseInstance = Room.databaseBuilder(
                     context, UserDatabase::class.java,
-                    "userDB1"
+                    "userDB2"
                 ).build()
             }
         }
