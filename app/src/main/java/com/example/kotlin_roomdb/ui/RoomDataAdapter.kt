@@ -37,8 +37,8 @@ class RoomDataAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(user: LiveUser) {
-            binding.liveUser = user
-            binding.updateDiaLogBox = UserUpdateDialogBox(context, user, supportFragmentManager)
+            binding.liveUser = user                    //setting up data variable liveuser
+            binding.updateDiaLogBox = UserUpdateDialogBox(context, user, supportFragmentManager)  // setting up data variable updatedialogbox
 
         }
     }
